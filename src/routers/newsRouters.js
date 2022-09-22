@@ -8,7 +8,14 @@ const multer  = require('multer');
 /////////////// Add news
 router.post('/profile/news', auth, async(req, res)=> {
     try{
-        const news = new News({...req.body,reporter:req.reporter._id, reporterName:req.reporter.name});
+        const day = new Intl.DateTimeFormat("en-GB", {
+            weekday: "short",
+            day: "2-digit",
+            hour: "numeric",
+            hour12: true,
+            minute: '2-digit'
+        }).format(Date.now());
+        const news = new News({...req.body,reporter:req.reporter._id, reporterName:req.reporter.name, reported_on: day});
         await news.save() ;
         res.send(news);
     }

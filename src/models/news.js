@@ -23,6 +23,10 @@ const newsSchema = new mongoose.Schema({
     required: true,
     ref: "Reporter",
   },
+  reported_on:{
+    type:String,
+    required: true,
+  },
   image: {
     type: Buffer,
   },
